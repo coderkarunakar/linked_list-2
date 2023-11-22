@@ -45,79 +45,79 @@
 # #2->3->4->5 simply reverse it then we will get like
 # #5->4->3->2->None here small head is 5 and small tail is 2
 
-# class Node:
-#     def __init__(self,data):
-#         #actually a node consist of data and next value i.e ref of next value so here we are storing next
-#         #value as None..
-#         self.data=data
-#         self.next=None
-#     def takeInput():
-#         inputList = [int(ele)for ele in input().split()]
-#         head =None
-#         tail=None
-#         for currData in inputList:
-#             if currData == -1:
-#                 break
-#             newNode =Node(currData)
-#             if head is None:
-#                 head =newNode
-#                 tail =newNode
-#             else:
-#                 tail.next =newNode
-#                 tail= newNode
-#         return head
+class Node:
+    def __init__(self,data):
+        #actually a node consist of data and next value i.e ref of next value so here we are storing next
+        #value as None..
+        self.data=data
+        self.next=None
+def takeInput():
+    inputList = [int(ele)for ele in input("enter elements").split()]
+    head =None
+    tail=None
+    for currData in inputList:
+        if currData == -1:
+            break
+        newNode =Node(currData)
+        if head is None:
+            head =newNode
+            tail =newNode
+        else:
+            tail.next =newNode
+            tail= newNode
+    return head
 
-#         #for getting head purpose
+        #for getting head purpose
 
-#     def printLL(head):
-#         #performs on head is not none
-#         while head is not None:
-#         #here we are converting it to string since it head is an int and we need output in the form of
-#         #-> arrow function and the printLL is an string and head is an integer so we can not do like that so we are simply converting it to string ...
-#             print(str(head.data) + "->",end="")
-#             head =head.next
-#             #by the above the loop was done and finally we need to print None and simply return 
-#         print("None")
-#         return 
+def printLL(head):
+    #performs on head is not none
+    while head is not None:
+    #here we are converting it to string since it head is an int and we need output in the form of
+    #-> arrow function and the printLL is an string and head is an integer so we can not do like that so we are simply converting it to string ...
+        print(str(head.data) + "->",end="")
+        head =head.next
+        #by the above the loop was done and finally we need to print None and simply return 
+    print("None")
+    return 
 
-# #reverse 1 is also a logic which is previous one
-#     def reverse1(head):
-#         if head is None or head.next is None:
-#             return head
-#         smallHead =reverse1(head.next)
-#         curr=smallHead
-#         while curr.next is not None:
-#             curr=curr.next
-#         curr.next=head
-#         head.next=None
-#         return smallHead
-
-
-#                             #OUR MAIN LOGIC PART
-#     def reverse2(head):
-
-#         #a special case and a base case
-#         if head is None or head.next is None:
-#             #in this case head,will be head, and tail also will be head
-#             return head,head
+#reverse 1 is also a logic which is previous one
+def reverse1(head):
+    if head is None or head.next is None:
+        return head
+    smallHead =reverse1(head.next)
+    curr=smallHead
+    while curr.next is not None:
+        curr=curr.next
+    curr.next=head
+    head.next=None
+    return smallHead
 
 
-# # 1->2->3->4->5
-# #1 ->5->4->3->2->None here smaill tail is 2
-#         #need to return 2 things so 
-#         smallHead,smallTail=reverse2(head.next)
-#         #here making 2s next to be 1
-#         smallTail.next=head
-#         #1s next to be none
-#         head.next=None
+                        #OUR MAIN LOGIC PART
+def reverse2(head):
+
+    #a special case and a base case
+    if head is None or head.next is None:
+        #in this case head,will be head, and tail also will be head
+        return head,head
 
 
-# #and after complete reversing we will get like 5->4->3->2->1 here small head is 5 and tail is head i.e 1
-#         return smallHead,head
+# 1->2->3->4->5
+#1 ->5->4->3->2->None here smaill tail is 2
+    #need to return 2 things so 
+    smallHead,smallTail=reverse2(head.next)
+    #here making 2s next to be 1
+    smallTail.next=head
+    #1s next to be none
+    head.next=None
 
 
-#     head=takeInput()
-#     printLL(head)
-#     head,tail=reverse2(head)
-#     printLL(head)
+#and after complete reversing we will get like 5->4->3->2->1 here small head is 5 and tail is head i.e 1
+    return smallHead,head
+
+
+head=takeInput()
+printLL(head)
+head,tail=reverse2(head)
+printLL(head)
 #first approach is o(n2) and second approach is O(n) Times
